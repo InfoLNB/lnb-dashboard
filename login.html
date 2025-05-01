@@ -1,181 +1,63 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Connexion LNB</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Connexion - LNB</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f7f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .login-container {
+      background: white;
+      padding: 2rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+    .login-container h2 {
+      margin-bottom: 1.5rem;
+      color: #004466;
+    }
+    input {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    button {
+      background-color: #004466;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    button:hover {
+      background-color: #006699;
+    }
+  </style>
 </head>
 <body>
-
-<!-- Menu Burger (mis à jour avec 📂 Documents) -->
-<style>
-  .sidebar {
-    height: 100vh;
-    width: 220px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: #0a1a2f;
-    color: white;
-    padding: 20px;
-    font-family: sans-serif;
-  }
-  .sidebar h2 {
-    font-size: 1.4em;
-    border-bottom: 1px solid #555;
-    padding-bottom: 10px;
-  }
-  .sidebar a {
-    display: block;
-    color: white;
-    margin: 12px 0;
-    text-decoration: none;
-  }
-  .sidebar a:hover {
-    color: #00bcd4;
-  }
-  .main-content {
-    margin-left: 240px;
-    padding: 20px;
-  }
-</style>
-
-<div class="sidebar">
-  <h2>LNB Dashboard</h2>
-  <a href="dashboard.html">🏠 Accueil</a>
-  <a href="admin-dashboard.html">🧭 Admin</a>
-  <a href="employe-dashboard.html">👷 Employé</a>
-  <a href="client-form.html">📇 Client</a>
-  <a href="project-detail.html">📁 Projets</a>
-  <a href="rapport-intervention.html">📝 Rapport</a>
-  <a href="rapport-pdf.html">🖨️ Export PDF</a>
-  <a href="notifications.html">🔔 Notifications</a>
-  <a href="documents.html">📂 Documents</a>
-  <a href="login.html">🔐 Connexion</a>
-</div>
-<div class="main-content">
-
-
-<!-- Menu Burger (commun à toutes les pages LNB) -->
-<style>
-  .sidebar {
-    height: 100vh;
-    width: 220px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: #0a1a2f;
-    color: white;
-    padding: 20px;
-    font-family: sans-serif;
-  }
-  .sidebar h2 {
-    font-size: 1.4em;
-    border-bottom: 1px solid #555;
-    padding-bottom: 10px;
-  }
-  .sidebar a {
-    display: block;
-    color: white;
-    margin: 12px 0;
-    text-decoration: none;
-  }
-  .sidebar a:hover {
-    color: #00bcd4;
-  }
-  .main-content {
-    margin-left: 240px;
-    padding: 20px;
-  }
-</style>
-<div class="sidebar">
-<h2>LNB Dashboard</h2>
-<a href="dashboard.html">🏠 Accueil</a>
-<a href="admin-dashboard.html">🧭 Admin</a>
-<a href="employe-dashboard.html">👷 Employé</a>
-<a href="client-form.html">📇 Client</a>
-<a href="project-detail.html">📁 Projets</a>
-<a href="rapport-intervention.html">📝 Rapport</a>
-<a href="rapport-pdf.html">🖨️ Export PDF</a>
-<a href="notifications.html">🔔 Notifications</a>
-<a href="login.html">🔐 Connexion</a>
-</div>
-<div class="main-content">
-<!-- CONTENU ICI -->
-<div class="login-container">
-<img alt="Logo LNB" src="https://raw.githubusercontent.com/BSQB83/lnb-dashboard/main/lnb-logo.png"/>
-<h2>Connexion LNB</h2>
-<form onsubmit="handleLogin(event)">
-<input id="username" placeholder="Nom d'utilisateur" required="" type="text"/>
-<input id="password" placeholder="Mot de passe" required="" type="password"/>
-<button type="submit">Se connecter</button>
-</form>
-</div>
-<script>
-    function handleLogin(event) {
-      event.preventDefault();
-      const user = document.getElementById('username').value;
-      const pass = document.getElementById('password').value;
-
-      // Admin
-      if (user === 'AdminBB' && pass === 'BrianBasile83!') {
-        window.location.href = 'admin-dashboard.html';
-      }
-
-      // Employés YACHTING
-      else if (user === 'YACHTING1' && pass === 'employepass1') {
-        window.location.href = 'employe-dashboard.html';
-      } else if (user === 'YACHTING2' && pass === 'employepass2') {
-        window.location.href = 'employe-dashboard.html';
-      } else if (user === 'YACHTING3' && pass === 'employepass3') {
-        window.location.href = 'employe-dashboard.html';
-      } else if (user === 'YACHTING4' && pass === 'employepass4') {
-        window.location.href = 'employe-dashboard.html';
-      } else if (user === 'YACHTING5' && pass === 'employepass5') {
-        window.location.href = 'employe-dashboard.html';
-      }
-
-      // Employés PAINTING
-      else if (user === 'PAINTING1' && pass === 'employepass1') {
-        window.location.href = 'employe-dashboard.html';
-      } else if (user === 'PAINTING2' && pass === 'employepass2') {
-        window.location.href = 'employe-dashboard.html';
-      } else if (user === 'PAINTING3' && pass === 'employepass3') {
-        window.location.href = 'employe-dashboard.html';
-      } else if (user === 'PAINTING4' && pass === 'employepass4') {
-        window.location.href = 'employe-dashboard.html';
-      } else if (user === 'PAINTING5' && pass === 'employepass5') {
-        window.location.href = 'employe-dashboard.html';
-      }
-
-      // Employés COVER
-      else if (user === 'COVER1' && pass === 'employepass1') {
-        window.location.href = 'employe-dashboard.html';
-      } else if (user === 'COVER2' && pass === 'employepass2') {
-        window.location.href = 'employe-dashboard.html';
-      } else if (user === 'COVER3' && pass === 'employepass3') {
-        window.location.href = 'employe-dashboard.html';
-      } else if (user === 'COVER4' && pass === 'employepass4') {
-        window.location.href = 'employe-dashboard.html';
-      } else if (user === 'COVER5' && pass === 'employepass5') {
-        window.location.href = 'employe-dashboard.html';
-      }
-
-      else {
-        alert('Identifiants incorrects.');
-      }
-    }
-  </script>
-</div>
-
-</div>
-
-<!-- Pied de page LNB -->
-<footer style="margin-top: 40px; padding: 20px; background: #0a1a2f; color: white; text-align: center;">
-  <img src="lnb-logo.png" alt="LNB Logo" style="height: 60px; display:block; margin: 0 auto 10px;" />
-  <p>LNB GROUP – Esthétique bateau, peinture, covering</p>
-  <p>📧 <a href="mailto:info@lnb-yachting.com" style="color:#00bcd4;">info@lnb-yachting.com</a></p>
-  <p style="font-size: 0.9em;">© 2025 LNB GROUP. Tous droits réservés.</p>
-</footer>
-
+  <div class="login-container">
+    <h2>Connexion LNB</h2>
+    <form>
+      <input type="text" placeholder="Nom d'utilisateur" required />
+      <input type="password" placeholder="Mot de passe" required />
+      <button type="submit">Se connecter</button>
+    </form>
+  </div>
 </body>
 </html>
