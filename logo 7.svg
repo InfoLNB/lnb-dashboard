@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg data-bbox="0 0 678 614.3" viewBox="0 0 708.7 708.7" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" data-type="ugc">
+    <g>
+        <path d="M352 614.3c139.2 0 252-112.8 252-252s-112.8-252-252-252-252 112.8-252 252 112.8 252 252 252z" id="9fb0defe-4e09-43f6-b0aa-1dfceb02696c" fill="none"/>
+        <text><textPath startOffset="100%" xlink:href="#9fb0defe-4e09-43f6-b0aa-1dfceb02696c">
+</textPath>
+</text>
+        <path d="M352 110.3c139.2 0 252 112.8 252 252s-112.8 252-252 252-252-112.8-252-252 112.8-252 252-252z" id="c3f367a2-931f-4440-bbdc-dd698c0ea9a3" fill="none"/>
+        <text><textPath startOffset="100%" xlink:href="#c3f367a2-931f-4440-bbdc-dd698c0ea9a3">
+</textPath>
+</text>
+        <path d="m354.5 178.2-107.7 62.2v243.8l107.7 62.2 107.7-62.2V240.4l-107.7-62.2zm0 238.8-94.7-54.7 94.7-54.7 94.7 54.7-94.7 54.7zm-99.1-171.6 94.7-54.7v109.4l-94.7 54.7V245.4zm0 124.4 94.7 54.7v109.4l-94.7-54.7V369.8zm198.2 109.4-94.7 54.7V424.5l94.7-54.7v109.4zm-94.8-179.1V190.7l94.7 54.7v109.4l-94.7-54.7z" fill="#00827f"/>
+        <path fill="#00827f" d="M165 358v8.7H31V358h134z"/>
+        <path fill="#00827f" d="M678 358v8.7H544V358h134z"/>
+    </g>
+</svg>

@@ -4,58 +4,72 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tableau de bord Employé</title>
+  <title>Tableau de bord Employé - LNB</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
       margin: 0;
       background: #eef2f5;
+      color: #333;
     }
     header {
-      background-color: #004466;
+      background-color: #002f4b;
       color: white;
       padding: 1rem;
-      font-size: 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
     .content {
       padding: 2rem;
     }
     h2 {
       color: #004466;
+      margin-bottom: 1rem;
     }
-    ul {
-      padding: 0;
-      list-style: none;
-    }
-    li {
+    .task {
       background: white;
       padding: 1rem;
       margin-bottom: 1rem;
       border-radius: 8px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      position: relative;
     }
-    .date {
-      font-size: 0.9rem;
-      color: #666;
+    .task img {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      height: 24px;
+    }
+    footer {
+      background: #002f4b;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
     }
   </style>
 </head>
 <body>
   <header>
-    Interventions Assignées
+    <span>👷 Interventions Assignées</span>
+    <img src="lnb-logo.png" alt="LNB Logo" style="height: 40px;">
   </header>
   <div class="content">
     <h2>Planning</h2>
-    <ul>
-      <li>
-        Lundi 6 mai – Yacht Azur<br/>
-        <span class="date">Nettoyage pont + inspection</span>
-      </li>
-      <li>
-        Mercredi 8 mai – Villa Lumière<br/>
-        <span class="date">Pose film PPF - 2h</span>
-      </li>
-    </ul>
+    <div class="task">
+      Lundi 6 mai – Yacht Azur<br/>
+      Nettoyage pont + inspection
+      <img src="Logo 2.svg" alt="Yachting">
+    </div>
+    <div class="task">
+      Mercredi 8 mai – Villa Lumière<br/>
+      Pose film PPF - 2h
+      <img src="logo 7.svg" alt="Cover">
+    </div>
   </div>
+  <footer>
+    LNB GROUP – info@lnb-yachting.com
+  </footer>
 </body>
 </html>

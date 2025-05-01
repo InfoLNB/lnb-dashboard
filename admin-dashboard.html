@@ -3,8 +3,8 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard - LNB</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LNB Admin Dashboard</title>
   <style>
     * { box-sizing: border-box; }
     body {
@@ -12,80 +12,140 @@
       font-family: 'Segoe UI', sans-serif;
       background: #f4f6f8;
       color: #333;
-    }
-    header {
-      background: #002f4b;
-      color: #fff;
-      padding: 1rem;
-      font-size: 1.2rem;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
     }
     .sidebar {
-      width: 220px;
-      background: #003b5c;
+      width: 240px;
+      background: #002f4b;
       color: white;
       height: 100vh;
       position: fixed;
-      padding-top: 2rem;
+      transition: 0.3s;
+    }
+    .sidebar .logo {
+      text-align: center;
+      padding: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .sidebar .logo img {
+      width: 80px;
+      height: auto;
     }
     .sidebar ul {
       list-style: none;
       padding: 0;
+      margin-top: 1rem;
     }
     .sidebar li {
       padding: 1rem 2rem;
       cursor: pointer;
+      display: flex;
+      align-items: center;
     }
     .sidebar li:hover {
-      background-color: #004b6e;
+      background-color: #01456a;
+    }
+    .sidebar li img {
+      height: 20px;
+      margin-right: 10px;
+    }
+    header {
+      background: white;
+      padding: 1rem;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      margin-left: 240px;
     }
     .main {
-      margin-left: 220px;
+      margin-left: 240px;
       padding: 2rem;
-    }
-    h2 {
-      font-size: 1.5rem;
-      color: #004466;
-      margin-bottom: 1rem;
+      flex: 1;
     }
     .card {
       background: white;
       padding: 1rem;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
       margin-bottom: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+      position: relative;
+    }
+    .card img {
+      position: absolute;
+      right: 16px;
+      top: 16px;
+      height: 24px;
+    }
+    .menu-toggle {
+      display: none;
     }
     @media (max-width: 768px) {
-      .sidebar { width: 100%; position: relative; height: auto; }
-      .main { margin-left: 0; padding: 1rem; }
+      .sidebar {
+        position: absolute;
+        left: -240px;
+        top: 0;
+        z-index: 1000;
+      }
+      .sidebar.show {
+        left: 0;
+      }
+      header {
+        margin-left: 0;
+      }
+      .main {
+        margin-left: 0;
+      }
+      .menu-toggle {
+        display: block;
+        font-size: 24px;
+        background: none;
+        border: none;
+        cursor: pointer;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <span>LNB Yachting - Admin</span>
-    <span>🔔 +</span>
-  </header>
-  <div class="sidebar">
+  <div class="sidebar" id="sidebar">
+    <div class="logo">
+      <img src="lnb-logo.png" alt="LNB Logo" />
+    </div>
     <ul>
-      <li>📊 Statistiques</li>
-      <li>📅 Planning</li>
-      <li>📁 Projets</li>
-      <li>👤 Clients</li>
+      <li><img src="Logo 2.svg" alt="Yachting"/><span>Yachting</span></li>
+      <li><img src="Logo 6.svg" alt="Painting"/><span>Painting</span></li>
+      <li><img src="logo 7.svg" alt="Cover"/><span>Cover</span></li>
     </ul>
   </div>
-  <div class="main">
-    <h2>Vue d'ensemble</h2>
-    <div class="card">
-      <strong>Projet Yacht Sunrise</strong><br>
-      Client : M. Durand — Avancement : 80%
-    </div>
-    <div class="card">
-      <strong>Projet Villa Lumière</strong><br>
-      Client : Mme Marchand — Avancement : 45%
+  <div style="width: 100%">
+    <header>
+      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+      <div><strong>Dashboard Admin</strong></div>
+      <div>
+        <span style="margin-right: 1rem;">🔔</span>
+        <button style="border-radius: 50%; border: none; background: #004466; padding: 6px;">
+          <img src="logo 8.svg" alt="Ajouter" style="height: 18px;" />
+        </button>
+      </div>
+    </header>
+    <div class="main">
+      <div class="card">
+        <strong>Projet Yacht Sunrise</strong><br>
+        Client : M. Durand — Avancement : 80%
+        <img src="Logo 2.svg" alt="Yachting">
+      </div>
+      <div class="card">
+        <strong>Projet Villa Lumière</strong><br>
+        Client : Mme Marchand — Avancement : 45%
+        <img src="logo 7.svg" alt="Cover">
+      </div>
     </div>
   </div>
+  <script>
+    function toggleMenu() {
+      document.getElementById("sidebar").classList.toggle("show");
+    }
+  </script>
 </body>
 </html>
