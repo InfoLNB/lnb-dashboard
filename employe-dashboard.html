@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard Employé - LNB</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      color: #001f3f;
+    }
+    .header {
+      background-color: #001f3f;
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+    }
+    .header img {
+      height: 40px;
+      margin-right: 15px;
+    }
+    .content {
+      padding: 20px;
+    }
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    input, textarea, select, button {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      box-sizing: border-box;
+    }
+    #calendar {
+      background-color: white;
+      padding: 10px;
+      border-radius: 10px;
+    }
+    .new-project {
+      background-color: #eef2f5;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <img src="lnb-logo.png" alt="Logo LNB">
+    <h1>Dashboard Employé</h1>
+  </div>
+  <div class="content">
+    <div class="card">
+      <h2>📅 Agenda des interventions</h2>
+      <div id="calendar"></div>
+    </div>
+    <div class="card">
+      <h2>📝 Rapport d'intervention</h2>
+      <form id="rapportForm">
+        <label for="project">Projet associé</label>
+        <select id="project">
+          <option disabled selected>Choisir un projet existant</option>
+          <option>YACHT-001 - Lady Blue</option>
+          <option>PAINT-002 - Villa Sud</option>
+          <option>CLEAN-006 - Quai Antibes</option>
+        </select>
+
+        <label>
+          <input type="checkbox" onclick="toggleNewProject()"> Créer un nouveau projet
+        </label>
+
+        <div id="newProjectForm" style="display:none;" class="new-project">
+          <input type="text" placeholder="Nom du bateau / chantier">
+          <input type="text" placeholder="Nom du client">
+          <input type="text" placeholder="Adresse">
+          <input type="tel" placeholder="Téléphone">
+        </div>
+
+        <input type="text" placeholder="Lieu de l'intervention">
+        <input type="datetime-local">
+        <textarea placeholder="Description du travail effectué"></textarea>
+        <input type="text" placeholder="Temps d'intervention (en h)">
+        <select>
+          <option disabled selected>Matériel utilisé</option>
+          <option>Nettoyant</option>
+          <option>Film Covering</option>
+          <option>Outils de polissage</option>
+        </select>
+        <input type="text" id="gps" placeholder="Position GPS (auto)" readonly>
+        <label>Photo AVANT intervention</label>
+        <input type="file">
+        <label>Photo APRÈS intervention</label>
+        <input type="file">
+        <textarea placeholder="Remarques complémentaires"></textarea>
+        <button type="submit">📤 Envoyer le rapport</button>
+        <button type="button" onclick="exportPDF()">🖨 Exporter en PDF</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+  <script>
+    function toggleNewProject() {
+      const block = document.getElementById('newProjectForm');
+      block.style.display = block.style.display === 'none' ? 'block' : 'none';
+    }
+
+    // GPS
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        document.getElementById('gps').value =
+          position.coords.latitude.toFixed(5) + ', ' + position.coords.longitude.toFixed(5);
+      });
+    }
+
+    // Agenda
+    document.addEventListener('DOMContentLoaded', function () {
+      const calendarEl = document.getElementById('calendar');
+      const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        locale: 'fr',
+        events: []
+      });
+      calendar.render();
+    });
+
+    // PDF Export
+    function exportPDF() {
+      const doc = new jspdf.jsPDF();
+      doc.text("Rapport d'intervention LNB", 10, 10);
+      doc.text("Projet: " + document.getElementById('project').value, 10, 20);
+      doc.save("rapport-lnb.pdf");
+    }
+  </script>
+</body>
+</html>

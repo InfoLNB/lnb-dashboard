@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connexion LNB</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .login-container {
+      background-color: white;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      width: 350px;
+      text-align: center;
+    }
+    img {
+      width: 100px;
+      margin-bottom: 20px;
+    }
+    h2 {
+      color: #001f3f;
+      margin-bottom: 20px;
+    }
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #001f3f;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #003366;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <img src="https://raw.githubusercontent.com/BSQB83/lnb-dashboard/main/lnb-logo.png" alt="Logo LNB">
+    <h2>Connexion LNB</h2>
+    <form onsubmit="handleLogin(event)">
+      <input type="text" id="username" placeholder="Nom d'utilisateur" required>
+      <input type="password" id="password" placeholder="Mot de passe" required>
+      <button type="submit">Se connecter</button>
+    </form>
+  </div>
+
+  <script>
+    function handleLogin(event) {
+      event.preventDefault();
+      const user = document.getElementById('username').value;
+      const pass = document.getElementById('password').value;
+
+      // Admin
+      if (user === 'AdminBB' && pass === 'BrianBasile83!') {
+        window.location.href = 'admin-dashboard.html';
+      }
+
+      // Employés YACHTING
+      else if (user === 'YACHTING1' && pass === 'employepass1') {
+        window.location.href = 'employe-dashboard.html';
+      } else if (user === 'YACHTING2' && pass === 'employepass2') {
+        window.location.href = 'employe-dashboard.html';
+      } else if (user === 'YACHTING3' && pass === 'employepass3') {
+        window.location.href = 'employe-dashboard.html';
+      } else if (user === 'YACHTING4' && pass === 'employepass4') {
+        window.location.href = 'employe-dashboard.html';
+      } else if (user === 'YACHTING5' && pass === 'employepass5') {
+        window.location.href = 'employe-dashboard.html';
+      }
+
+      // Employés PAINTING
+      else if (user === 'PAINTING1' && pass === 'employepass1') {
+        window.location.href = 'employe-dashboard.html';
+      } else if (user === 'PAINTING2' && pass === 'employepass2') {
+        window.location.href = 'employe-dashboard.html';
+      } else if (user === 'PAINTING3' && pass === 'employepass3') {
+        window.location.href = 'employe-dashboard.html';
+      } else if (user === 'PAINTING4' && pass === 'employepass4') {
+        window.location.href = 'employe-dashboard.html';
+      } else if (user === 'PAINTING5' && pass === 'employepass5') {
+        window.location.href = 'employe-dashboard.html';
+      }
+
+      // Employés COVER
+      else if (user === 'COVER1' && pass === 'employepass1') {
+        window.location.href = 'employe-dashboard.html';
+      } else if (user === 'COVER2' && pass === 'employepass2') {
+        window.location.href = 'employe-dashboard.html';
+      } else if (user === 'COVER3' && pass === 'employepass3') {
+        window.location.href = 'employe-dashboard.html';
+      } else if (user === 'COVER4' && pass === 'employepass4') {
+        window.location.href = 'employe-dashboard.html';
+      } else if (user === 'COVER5' && pass === 'employepass5') {
+        window.location.href = 'employe-dashboard.html';
+      }
+
+      else {
+        alert('Identifiants incorrects.');
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,194 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Création Client - LNB</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      color: #001f3f;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    form {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 800px;
+      margin: auto;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #001f3f;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    table {
+      width: 100%;
+      margin-top: 30px;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #ddd;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Ajouter un Client / Projet</h1>
+
+<form id="clientForm">
+  <label>Type de client :</label>
+  <select id="clientType" onchange="toggleFields()">
+    <option value="Particulier">Particulier</option>
+    <option value="Professionnel">Professionnel</option>
+  </select>
+
+  <div id="fieldsParticulier">
+    <label>Nom complet :</label>
+    <input type="text" id="nomClient" placeholder="Nom et prénom">
+  </div>
+
+  <div id="fieldsPro" class="hidden">
+    <label>Raison sociale :</label>
+    <input type="text" id="raisonSociale" placeholder="Nom de l'entreprise">
+    <label>N° TVA :</label>
+    <input type="text" id="tva">
+    <label>SIRET :</label>
+    <input type="text" id="siret">
+  </div>
+
+  <label>Nom du projet / bateau :</label>
+  <input type="text" id="projet">
+
+  <label>Activité :</label>
+  <select id="activite">
+    <option>Yachting</option>
+    <option>Painting</option>
+    <option>Cover</option>
+    <option>Cleaning</option>
+  </select>
+
+  <label>Adresse :</label>
+  <input type="text" id="adresse">
+
+  <label>Téléphone :</label>
+  <input type="tel" id="telephone">
+
+  <label>Commentaires / notes :</label>
+  <textarea id="notes" rows="3"></textarea>
+
+  <button type="button" onclick="ajouterClient()">Ajouter</button>
+  <button type="button" onclick="exporterExcel()">Exporter en Excel</button>
+
+  <button type="button" onclick="envoyerEmail()">📧 Envoyer à LNB</button>
+  <button type="button" onclick="envoyerEmail()">Envoyer à LNB</button>
+</form>
+
+<div style="max-width: 1000px; margin: auto;">
+  <table id="clientTable">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Client</th>
+        <th>Projet</th>
+        <th>Activité</th>
+        <th>Téléphone</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+<script>
+let clients = [];
+
+function toggleFields() {
+  const type = document.getElementById("clientType").value;
+  document.getElementById("fieldsPro").classList.toggle("hidden", type !== "Professionnel");
+  document.getElementById("fieldsParticulier").classList.toggle("hidden", type !== "Particulier");
+}
+
+function ajouterClient() {
+  const type = document.getElementById("clientType").value;
+  const nom = type === "Professionnel" ? document.getElementById("raisonSociale").value : document.getElementById("nomClient").value;
+  const projet = document.getElementById("projet").value;
+  const activite = document.getElementById("activite").value;
+  const adresse = document.getElementById("adresse").value;
+  const telephone = document.getElementById("telephone").value;
+  const notes = document.getElementById("notes").value;
+
+  const client = { Type: type, Client: nom, Projet: projet, Activité: activite, Téléphone: telephone, Notes: notes };
+  clients.push(client);
+  afficherTable();
+}
+
+function afficherTable() {
+  const tbody = document.querySelector("#clientTable tbody");
+  tbody.innerHTML = "";
+  clients.forEach(c => {
+    const row = `<tr><td>${c.Type}</td><td>${c.Client}</td><td>${c.Projet}</td><td>${c.Activité}</td><td>${c.Téléphone}</td><td>${c.Notes}</td></tr>`;
+    tbody.innerHTML += row;
+  });
+}
+
+function exporterExcel() {
+  const ws = XLSX.utils.json_to_sheet(clients);
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, "Clients");
+  XLSX.writeFile(wb, "LNB_Clients.xlsx");
+}
+
+function envoyerEmail() {
+  let message = "Nouveaux clients enregistrés :\n\n";
+  clients.forEach((c, i) => {
+    message += `Client ${i + 1} - ${c.Type}\nNom: ${c.Client}\nProjet: ${c.Projet}\nActivité: ${c.Activité}\nTéléphone: ${c.Téléphone}\nNotes: ${c.Notes}\n\n`;
+  });
+  const mailtoLink = `mailto:info@lnb-yachting.com?subject=Clients LNB&body=${encodeURIComponent(message)}`;
+  window.location.href = mailtoLink;
+}
+
+function envoyerEmail() {
+  const type = document.getElementById("clientType").value;
+  const nom = type === "Professionnel" ? document.getElementById("raisonSociale").value : document.getElementById("nomClient").value;
+  const projet = document.getElementById("projet").value;
+  const activite = document.getElementById("activite").value;
+  const adresse = document.getElementById("adresse").value;
+  const telephone = document.getElementById("telephone").value;
+  const notes = document.getElementById("notes").value;
+
+  const body = encodeURIComponent(
+    `Type: ${type}%0D%0AClient: ${nom}%0D%0AProjet: ${projet}%0D%0AActivité: ${activite}%0D%0AAdresse: ${adresse}%0D%0ATéléphone: ${telephone}%0D%0ANotes: ${notes}`
+  );
+  const mailto = `mailto:info@lnb-yachting.com?subject=Fiche client LNB - ${projet}&body=${body}`;
+  window.location.href = mailto;
+}
+</script>
+
+</body>
+</html>
