@@ -4,15 +4,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LNB Admin Dashboard</title>
+  <title>LNB GROUP APP</title>
   <style>
-    * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
       background: #f4f6f8;
       color: #333;
-      display: flex;
     }
     .sidebar {
       width: 240px;
@@ -20,30 +18,27 @@
       color: white;
       height: 100vh;
       position: fixed;
-      transition: 0.3s;
+      top: 0;
+      left: 0;
+      padding-top: 1rem;
     }
     .sidebar .logo {
       text-align: center;
       padding: 1rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(255,255,255,0.2);
     }
-    .sidebar .logo img {
-      width: 80px;
-      height: auto;
+    .sidebar img {
+      height: 50px;
     }
     .sidebar ul {
       list-style: none;
       padding: 0;
-      margin-top: 1rem;
+      margin: 2rem 0;
     }
     .sidebar li {
       padding: 1rem 2rem;
-      cursor: pointer;
       display: flex;
       align-items: center;
-    }
-    .sidebar li:hover {
-      background-color: #01456a;
     }
     .sidebar li img {
       height: 20px;
@@ -52,100 +47,133 @@
     header {
       background: white;
       padding: 1rem;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
       margin-left: 240px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
     .main {
       margin-left: 240px;
       padding: 2rem;
-      flex: 1;
     }
-    .card {
+    .stats {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .stat-box {
+      flex: 1;
       background: white;
       padding: 1rem;
-      margin-bottom: 1rem;
       border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+    .projects {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .project {
+      background: white;
+      padding: 1rem;
+      border-left: 6px solid #0097a7;
+      border-radius: 6px;
       box-shadow: 0 1px 4px rgba(0,0,0,0.05);
       position: relative;
     }
-    .card img {
+    .project .status {
       position: absolute;
-      right: 16px;
-      top: 16px;
-      height: 24px;
+      top: 1rem;
+      right: 1rem;
+      font-weight: bold;
     }
-    .menu-toggle {
-      display: none;
+    .project .personnel {
+      font-size: 0.9em;
+      color: #555;
     }
-    @media (max-width: 768px) {
-      .sidebar {
-        position: absolute;
-        left: -240px;
-        top: 0;
-        z-index: 1000;
-      }
-      .sidebar.show {
-        left: 0;
-      }
-      header {
-        margin-left: 0;
-      }
-      .main {
-        margin-left: 0;
-      }
-      .menu-toggle {
-        display: block;
-        font-size: 24px;
-        background: none;
-        border: none;
-        cursor: pointer;
-      }
+    button.plus-btn {
+      background: #004466;
+      color: white;
+      padding: 10px 16px;
+      font-size: 18px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+    }
+    footer {
+      margin-top: 3rem;
+      padding: 1rem;
+      text-align: center;
+      color: #aaa;
+      font-size: 0.9rem;
     }
   </style>
 </head>
 <body>
-  <div class="sidebar" id="sidebar">
-    <div class="logo">
-      <img src="lnb-logo.png" alt="LNB Logo" />
-    </div>
+  <div class="sidebar">
+    <div class="logo"><img src="lnb-logo.png" alt="LNB Logo" /></div>
     <ul>
-      <li><img src="Logo 2.svg" alt="Yachting"/><span>Yachting</span></li>
-      <li><img src="Logo 6.svg" alt="Painting"/><span>Painting</span></li>
-      <li><img src="logo 7.svg" alt="Cover"/><span>Cover</span></li>
+      <li><img src="Logo 2.svg" alt="Yachting" /><span>Yachting</span></li>
+      <li><img src="Logo 6.svg" alt="Painting" /><span>Painting</span></li>
+      <li><img src="logo 7.svg" alt="Cover" /><span>Cover</span></li>
     </ul>
   </div>
-  <div style="width: 100%">
-    <header>
-      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-      <div><strong>Dashboard Admin</strong></div>
-      <div>
-        <span style="margin-right: 1rem;">🔔</span>
-        <button style="border-radius: 50%; border: none; background: #004466; padding: 6px;">
-          <img src="logo 8.svg" alt="Ajouter" style="height: 18px;" />
-        </button>
+  <header>
+    <h2>LNB GROUP APP</h2>
+    <div>
+      <span style="margin-right: 1rem;">🔔</span>
+      <button class="plus-btn" onclick="alert('Formulaire d’intervention à venir')">+</button>
+    </div>
+  </header>
+  <div class="main">
+    <div class="stats">
+      <div class="stat-box">
+        <h3>CA Mensuel</h3>
+        <p>54 200 €</p>
       </div>
-    </header>
-    <div class="main">
-      <div class="card">
-        <strong>Projet Yacht Sunrise</strong><br>
-        Client : M. Durand — Avancement : 80%
-        <img src="Logo 2.svg" alt="Yachting">
+      <div class="stat-box">
+        <h3>Heures Trav.</h3>
+        <p>318 h</p>
       </div>
-      <div class="card">
-        <strong>Projet Villa Lumière</strong><br>
-        Client : Mme Marchand — Avancement : 45%
-        <img src="logo 7.svg" alt="Cover">
+      <div class="stat-box">
+        <h3>Devis</h3>
+        <p>12 créés</p>
+      </div>
+      <div class="stat-box">
+        <h3>Factures</h3>
+        <p>9 envoyées</p>
       </div>
     </div>
+
+    <h3>📁 Projets en cours</h3>
+    <div class="projects">
+      <div class="project">
+        <div class="status" style="color:green;">🟢 Terminé</div>
+        <strong>Yacht Sunrise</strong><br>
+        Client : M. Durand<br>
+        Activité : Yachting<br>
+        <span class="personnel">👤 Basile, Brian</span>
+      </div>
+      <div class="project">
+        <div class="status" style="color:orange;">🟠 En cours</div>
+        <strong>Villa Canopée</strong><br>
+        Client : Mme Marchand<br>
+        Activité : Cover<br>
+        <span class="personnel">👤 Brian</span>
+      </div>
+      <div class="project">
+        <div class="status" style="color:red;">🔴 En attente</div>
+        <strong>Entrepôt Zone 83</strong><br>
+        Client : Société X<br>
+        Activité : Painting<br>
+        <span class="personnel">👤 Basile</span>
+      </div>
+    </div>
+    <footer>
+      © 2025 LNB GROUP – Contact : <a href="mailto:info@lnb-yachting.com">info@lnb-yachting.com</a>
+    </footer>
   </div>
-  <script>
-    function toggleMenu() {
-      document.getElementById("sidebar").classList.toggle("show");
-    }
-  </script>
 </body>
 </html>
