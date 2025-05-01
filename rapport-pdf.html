@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<!-- Menu Burger (commun à toutes les pages LNB) -->
+<!-- Menu Burger (mis à jour avec 📂 Documents) -->
 <style>
   .sidebar {
     height: 100vh;
@@ -49,12 +49,58 @@
   <a href="rapport-intervention.html">📝 Rapport</a>
   <a href="rapport-pdf.html">🖨️ Export PDF</a>
   <a href="notifications.html">🔔 Notifications</a>
+  <a href="documents.html">📂 Documents</a>
   <a href="login.html">🔐 Connexion</a>
 </div>
 <div class="main-content">
-  <!-- CONTENU ICI -->
 
 
+<!-- Menu Burger (commun à toutes les pages LNB) -->
+<style>
+  .sidebar {
+    height: 100vh;
+    width: 220px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #0a1a2f;
+    color: white;
+    padding: 20px;
+    font-family: sans-serif;
+  }
+  .sidebar h2 {
+    font-size: 1.4em;
+    border-bottom: 1px solid #555;
+    padding-bottom: 10px;
+  }
+  .sidebar a {
+    display: block;
+    color: white;
+    margin: 12px 0;
+    text-decoration: none;
+  }
+  .sidebar a:hover {
+    color: #00bcd4;
+  }
+  .main-content {
+    margin-left: 240px;
+    padding: 20px;
+  }
+</style>
+<div class="sidebar">
+<h2>LNB Dashboard</h2>
+<a href="dashboard.html">🏠 Accueil</a>
+<a href="admin-dashboard.html">🧭 Admin</a>
+<a href="employe-dashboard.html">👷 Employé</a>
+<a href="client-form.html">📇 Client</a>
+<a href="project-detail.html">📁 Projets</a>
+<a href="rapport-intervention.html">📝 Rapport</a>
+<a href="rapport-pdf.html">🖨️ Export PDF</a>
+<a href="notifications.html">🔔 Notifications</a>
+<a href="login.html">🔐 Connexion</a>
+</div>
+<div class="main-content">
+<!-- CONTENU ICI -->
 <h1>📝 Rapport d'intervention</h1>
 <p>Projet : Yacht Albatros</p>
 <p>Employé : Jean M.</p>
@@ -63,6 +109,7 @@
 <p>Durée : 3h15</p>
 <p>Matériel : Lustreuse, polish 3M</p>
 <button onclick="window.print()">🖨️ Imprimer / Exporter PDF</button>
+</div>
 
 </div>
 </body>
