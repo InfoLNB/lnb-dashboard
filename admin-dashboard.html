@@ -3,66 +3,52 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>LNB GROUP APP</title>
+  <title>Admin - LNB GROUP</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <aside>
-    <img src="lnb-logo.png" alt="Logo LNB" style="width: 60px;" />
+    <img src="lnb-logo.png" alt="LNB Logo" style="width: 80px;" />
     <nav>
       <ul>
-        <li><a href="#">Yachting</a></li>
-        <li><a href="#">Painting</a></li>
-        <li><a href="#">Cover</a></li>
+        <li><img src="Logo 2.svg" style="height:20px;"/> Yachting</li>
+        <li><img src="Logo 6.svg" style="height:20px;"/> Painting</li>
+        <li><img src="logo 7.svg" style="height:20px;"/> Cover</li>
+        <li><img src="logo 8.svg" style="height:20px;"/> Cleaning</li>
       </ul>
     </nav>
   </aside>
-
   <main>
     <header>
       <h1>LNB GROUP APP</h1>
-      <button id="open-form">+</button>
-      <span>🔔</span>
+      <button id="open-form">➕</button>
     </header>
 
     <section class="stats">
-      <div><strong>CA Mensuel</strong><br>54 200 €</div>
-      <div><strong>Heures Trav.</strong><br>318 h</div>
-      <div><strong>Devis</strong><br>12 créés</div>
-      <div><strong>Factures</strong><br>9 envoyées</div>
+      <div><strong>CA Mensuel</strong><br><em>Pas encore de données</em></div>
+      <div><strong>Heures Trav.</strong><br><em>Pas encore de données</em></div>
+      <div><strong>Devis</strong><br><em>0 créé</em></div>
+      <div><strong>Factures</strong><br><em>0 envoyée</em></div>
     </section>
 
-    <section class="projects">
-      <h2>📁 Projets en cours</h2>
-      <article>
-        <h3>Yacht Sunrise</h3>
-        <p>Client : M. Durand<br>Activité : Yachting<br>👤 Basile, Brian</p>
-        <span style="color:green;">🟢 Terminé</span>
-      </article>
+    <section id="projects">
+      <div class="project">
+        <h3>Projet Yacht</h3>
+        <p>Activité: Yachting</p>
+        <button onclick="archiveProject(this)">🗑 Archiver</button>
+      </div>
     </section>
+
+    <h2>📁 Archives</h2>
+    <section id="archives"></section>
   </main>
-
-  <dialog id="modal-form">
-    <div id="modal-content"></div>
-    <button id="close-modal">Fermer</button>
-  </dialog>
-
   <script>
-    const openFormBtn = document.getElementById('open-form');
-    const modal = document.getElementById('modal-form');
-    const modalContent = document.getElementById('modal-content');
-    const closeModalBtn = document.getElementById('close-modal');
-
-    openFormBtn.addEventListener('click', async () => {
-      const response = await fetch('formulaire-intervention.html');
-      const formHtml = await response.text();
-      modalContent.innerHTML = formHtml;
-      modal.showModal();
-    });
-
-    closeModalBtn.addEventListener('click', () => {
-      modal.close();
-    });
+    function archiveProject(btn) {
+      const card = btn.parentElement;
+      card.classList.add("archived");
+      document.getElementById("archives").appendChild(card);
+      btn.remove();
+    }
   </script>
 </body>
 </html>
