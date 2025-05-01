@@ -11,17 +11,17 @@
     <img src="lnb-logo.png" alt="LNB Logo" style="width: 80px;" />
     <nav>
       <ul>
-        <li><img src="Logo 2.svg" style="height:20px;"/> Yachting</li>
-        <li><img src="Logo 6.svg" style="height:20px;"/> Painting</li>
-        <li><img src="logo 7.svg" style="height:20px;"/> Cover</li>
-        <li><img src="logo 8.svg" style="height:20px;"/> Cleaning</li>
+        <li><a href="#"><img src="Logo 2.svg" style="height:20px; vertical-align:middle;"/> Yachting</a></li>
+        <li><a href="#"><img src="Logo 6.svg" style="height:20px; vertical-align:middle;"/> Painting</a></li>
+        <li><a href="#"><img src="logo 7.svg" style="height:20px; vertical-align:middle;"/> Cover</a></li>
+        <li><a href="#"><img src="logo 8.svg" style="height:20px; vertical-align:middle;"/> Cleaning</a></li>
       </ul>
     </nav>
   </aside>
   <main>
     <header>
       <h1>LNB GROUP APP</h1>
-      <button id="open-form">➕</button>
+      <a href="rapport-intervention.html"><button id="open-form">➕</button></a>
     </header>
 
     <section class="stats">
@@ -35,6 +35,13 @@
       <div class="project">
         <h3>Projet Yacht</h3>
         <p>Activité: Yachting</p>
+        <a href="project-detail.html"><button>🔍 Voir</button></a>
+        <button onclick="archiveProject(this)">🗑 Archiver</button>
+      </div>
+      <div class="project">
+        <h3>Projet Peinture</h3>
+        <p>Activité: Painting</p>
+        <a href="project-detail.html"><button>🔍 Voir</button></a>
         <button onclick="archiveProject(this)">🗑 Archiver</button>
       </div>
     </section>
