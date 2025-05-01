@@ -6,69 +6,86 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Dashboard - LNB</title>
   <style>
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: #f7f9fc;
+      background: #f4f6f8;
       color: #333;
     }
     header {
-      background-color: #004466;
-      color: white;
-      padding: 1rem 2rem;
-      font-size: 1.5rem;
-    }
-    nav {
-      background: white;
+      background: #002f4b;
+      color: #fff;
       padding: 1rem;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      font-size: 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-    .content {
-      padding: 2rem;
+    .sidebar {
+      width: 220px;
+      background: #003b5c;
+      color: white;
+      height: 100vh;
+      position: fixed;
+      padding-top: 2rem;
     }
-    h2 {
-      color: #004466;
-    }
-    ul {
+    .sidebar ul {
       list-style: none;
       padding: 0;
     }
-    li {
-      padding: 1rem;
-      margin-bottom: 1rem;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    .sidebar li {
+      padding: 1rem 2rem;
+      cursor: pointer;
     }
-    .tag {
-      font-size: 0.8rem;
-      background: #e0f7fa;
-      color: #006064;
-      border-radius: 12px;
-      padding: 0.25rem 0.5rem;
-      display: inline-block;
+    .sidebar li:hover {
+      background-color: #004b6e;
+    }
+    .main {
+      margin-left: 220px;
+      padding: 2rem;
+    }
+    h2 {
+      font-size: 1.5rem;
+      color: #004466;
+      margin-bottom: 1rem;
+    }
+    .card {
+      background: white;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      margin-bottom: 1rem;
+    }
+    @media (max-width: 768px) {
+      .sidebar { width: 100%; position: relative; height: auto; }
+      .main { margin-left: 0; padding: 1rem; }
     }
   </style>
 </head>
 <body>
   <header>
-    Tableau de bord - Administrateur LNB
+    <span>LNB Yachting - Admin</span>
+    <span>🔔 +</span>
   </header>
-  <nav>
-    <strong>Navigation :</strong> Projets | Interventions | Clients | Factures
-  </nav>
-  <div class="content">
-    <h2>Liste des Projets</h2>
+  <div class="sidebar">
     <ul>
-      <li>
-        Yacht Sunrise <span class="tag">Yachting</span><br/>
-        Client : M. Durand – Avancement : 80%
-      </li>
-      <li>
-        Villa Canopée <span class="tag">Cover</span><br/>
-        Client : Mme Marchand – Avancement : 40%
-      </li>
+      <li>📊 Statistiques</li>
+      <li>📅 Planning</li>
+      <li>📁 Projets</li>
+      <li>👤 Clients</li>
     </ul>
+  </div>
+  <div class="main">
+    <h2>Vue d'ensemble</h2>
+    <div class="card">
+      <strong>Projet Yacht Sunrise</strong><br>
+      Client : M. Durand — Avancement : 80%
+    </div>
+    <div class="card">
+      <strong>Projet Villa Lumière</strong><br>
+      Client : Mme Marchand — Avancement : 45%
+    </div>
   </div>
 </body>
 </html>
