@@ -3,177 +3,66 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LNB GROUP APP</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #f4f6f8;
-      color: #333;
-    }
-    .sidebar {
-      width: 240px;
-      background: #002f4b;
-      color: white;
-      height: 100vh;
-      position: fixed;
-      top: 0;
-      left: 0;
-      padding-top: 1rem;
-    }
-    .sidebar .logo {
-      text-align: center;
-      padding: 1rem;
-      border-bottom: 1px solid rgba(255,255,255,0.2);
-    }
-    .sidebar img {
-      height: 50px;
-    }
-    .sidebar ul {
-      list-style: none;
-      padding: 0;
-      margin: 2rem 0;
-    }
-    .sidebar li {
-      padding: 1rem 2rem;
-      display: flex;
-      align-items: center;
-    }
-    .sidebar li img {
-      height: 20px;
-      margin-right: 10px;
-    }
-    header {
-      background: white;
-      padding: 1rem;
-      margin-left: 240px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-    .main {
-      margin-left: 240px;
-      padding: 2rem;
-    }
-    .stats {
-      display: flex;
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-    .stat-box {
-      flex: 1;
-      background: white;
-      padding: 1rem;
-      border-radius: 8px;
-      text-align: center;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-    }
-    .projects {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    .project {
-      background: white;
-      padding: 1rem;
-      border-left: 6px solid #0097a7;
-      border-radius: 6px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-      position: relative;
-    }
-    .project .status {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      font-weight: bold;
-    }
-    .project .personnel {
-      font-size: 0.9em;
-      color: #555;
-    }
-    button.plus-btn {
-      background: #004466;
-      color: white;
-      padding: 10px 16px;
-      font-size: 18px;
-      border-radius: 50%;
-      border: none;
-      cursor: pointer;
-    }
-    footer {
-      margin-top: 3rem;
-      padding: 1rem;
-      text-align: center;
-      color: #aaa;
-      font-size: 0.9rem;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="sidebar">
-    <div class="logo"><img src="lnb-logo.png" alt="LNB Logo" /></div>
-    <ul>
-      <li><img src="Logo 2.svg" alt="Yachting" /><span>Yachting</span></li>
-      <li><img src="Logo 6.svg" alt="Painting" /><span>Painting</span></li>
-      <li><img src="logo 7.svg" alt="Cover" /><span>Cover</span></li>
-    </ul>
-  </div>
-  <header>
-    <h2>LNB GROUP APP</h2>
-    <div>
-      <span style="margin-right: 1rem;">🔔</span>
-      <button class="plus-btn" onclick="alert('Formulaire d’intervention à venir')">+</button>
-    </div>
-  </header>
-  <div class="main">
-    <div class="stats">
-      <div class="stat-box">
-        <h3>CA Mensuel</h3>
-        <p>54 200 €</p>
-      </div>
-      <div class="stat-box">
-        <h3>Heures Trav.</h3>
-        <p>318 h</p>
-      </div>
-      <div class="stat-box">
-        <h3>Devis</h3>
-        <p>12 créés</p>
-      </div>
-      <div class="stat-box">
-        <h3>Factures</h3>
-        <p>9 envoyées</p>
-      </div>
-    </div>
+  <aside>
+    <img src="lnb-logo.png" alt="Logo LNB" style="width: 60px;" />
+    <nav>
+      <ul>
+        <li><a href="#">Yachting</a></li>
+        <li><a href="#">Painting</a></li>
+        <li><a href="#">Cover</a></li>
+      </ul>
+    </nav>
+  </aside>
 
-    <h3>📁 Projets en cours</h3>
-    <div class="projects">
-      <div class="project">
-        <div class="status" style="color:green;">🟢 Terminé</div>
-        <strong>Yacht Sunrise</strong><br>
-        Client : M. Durand<br>
-        Activité : Yachting<br>
-        <span class="personnel">👤 Basile, Brian</span>
-      </div>
-      <div class="project">
-        <div class="status" style="color:orange;">🟠 En cours</div>
-        <strong>Villa Canopée</strong><br>
-        Client : Mme Marchand<br>
-        Activité : Cover<br>
-        <span class="personnel">👤 Brian</span>
-      </div>
-      <div class="project">
-        <div class="status" style="color:red;">🔴 En attente</div>
-        <strong>Entrepôt Zone 83</strong><br>
-        Client : Société X<br>
-        Activité : Painting<br>
-        <span class="personnel">👤 Basile</span>
-      </div>
-    </div>
-    <footer>
-      © 2025 LNB GROUP – Contact : <a href="mailto:info@lnb-yachting.com">info@lnb-yachting.com</a>
-    </footer>
-  </div>
+  <main>
+    <header>
+      <h1>LNB GROUP APP</h1>
+      <button id="open-form">+</button>
+      <span>🔔</span>
+    </header>
+
+    <section class="stats">
+      <div><strong>CA Mensuel</strong><br>54 200 €</div>
+      <div><strong>Heures Trav.</strong><br>318 h</div>
+      <div><strong>Devis</strong><br>12 créés</div>
+      <div><strong>Factures</strong><br>9 envoyées</div>
+    </section>
+
+    <section class="projects">
+      <h2>📁 Projets en cours</h2>
+      <article>
+        <h3>Yacht Sunrise</h3>
+        <p>Client : M. Durand<br>Activité : Yachting<br>👤 Basile, Brian</p>
+        <span style="color:green;">🟢 Terminé</span>
+      </article>
+    </section>
+  </main>
+
+  <dialog id="modal-form">
+    <div id="modal-content"></div>
+    <button id="close-modal">Fermer</button>
+  </dialog>
+
+  <script>
+    const openFormBtn = document.getElementById('open-form');
+    const modal = document.getElementById('modal-form');
+    const modalContent = document.getElementById('modal-content');
+    const closeModalBtn = document.getElementById('close-modal');
+
+    openFormBtn.addEventListener('click', async () => {
+      const response = await fetch('formulaire-intervention.html');
+      const formHtml = await response.text();
+      modalContent.innerHTML = formHtml;
+      modal.showModal();
+    });
+
+    closeModalBtn.addEventListener('click', () => {
+      modal.close();
+    });
+  </script>
 </body>
 </html>
