@@ -1,130 +1,114 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <title>Création Client - LNB</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f8f9fa;
-      color: #001f3f;
-      margin: 0;
-      padding: 20px;
-    }
-    h1 {
-      text-align: center;
-    }
-    form {
-      background-color: white;
-      padding: 20px;
-      border-radius: 10px;
-      max-width: 800px;
-      margin: auto;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-    label {
-      display: block;
-      margin-top: 10px;
-    }
-    input, select, textarea {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-    }
-    button {
-      margin-top: 15px;
-      padding: 10px 20px;
-      background-color: #001f3f;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    table {
-      width: 100%;
-      margin-top: 30px;
-      border-collapse: collapse;
-    }
-    th, td {
-      padding: 10px;
-      border: 1px solid #ddd;
-    }
-    .hidden {
-      display: none;
-    }
-  </style>
 </head>
 <body>
 
-<h1>Ajouter un Client / Projet</h1>
+<!-- Menu Burger (commun à toutes les pages LNB) -->
+<style>
+  .sidebar {
+    height: 100vh;
+    width: 220px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #0a1a2f;
+    color: white;
+    padding: 20px;
+    font-family: sans-serif;
+  }
+  .sidebar h2 {
+    font-size: 1.4em;
+    border-bottom: 1px solid #555;
+    padding-bottom: 10px;
+  }
+  .sidebar a {
+    display: block;
+    color: white;
+    margin: 12px 0;
+    text-decoration: none;
+  }
+  .sidebar a:hover {
+    color: #00bcd4;
+  }
+  .main-content {
+    margin-left: 240px;
+    padding: 20px;
+  }
+</style>
 
-<form id="clientForm">
-  <label>Type de client :</label>
-  <select id="clientType" onchange="toggleFields()">
-    <option value="Particulier">Particulier</option>
-    <option value="Professionnel">Professionnel</option>
-  </select>
-
-  <div id="fieldsParticulier">
-    <label>Nom complet :</label>
-    <input type="text" id="nomClient" placeholder="Nom et prénom">
-  </div>
-
-  <div id="fieldsPro" class="hidden">
-    <label>Raison sociale :</label>
-    <input type="text" id="raisonSociale" placeholder="Nom de l'entreprise">
-    <label>N° TVA :</label>
-    <input type="text" id="tva">
-    <label>SIRET :</label>
-    <input type="text" id="siret">
-  </div>
-
-  <label>Nom du projet / bateau :</label>
-  <input type="text" id="projet">
-
-  <label>Activité :</label>
-  <select id="activite">
-    <option>Yachting</option>
-    <option>Painting</option>
-    <option>Cover</option>
-    <option>Cleaning</option>
-  </select>
-
-  <label>Adresse :</label>
-  <input type="text" id="adresse">
-
-  <label>Téléphone :</label>
-  <input type="tel" id="telephone">
-
-  <label>Commentaires / notes :</label>
-  <textarea id="notes" rows="3"></textarea>
-
-  <button type="button" onclick="ajouterClient()">Ajouter</button>
-  <button type="button" onclick="exporterExcel()">Exporter en Excel</button>
-
-  <button type="button" onclick="envoyerEmail()">📧 Envoyer à LNB</button>
-  <button type="button" onclick="envoyerEmail()">Envoyer à LNB</button>
-</form>
-
-<div style="max-width: 1000px; margin: auto;">
-  <table id="clientTable">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Client</th>
-        <th>Projet</th>
-        <th>Activité</th>
-        <th>Téléphone</th>
-        <th>Notes</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
+<div class="sidebar">
+  <h2>LNB Dashboard</h2>
+  <a href="dashboard.html">🏠 Accueil</a>
+  <a href="admin-dashboard.html">🧭 Admin</a>
+  <a href="employe-dashboard.html">👷 Employé</a>
+  <a href="client-form.html">📇 Client</a>
+  <a href="project-detail.html">📁 Projets</a>
+  <a href="rapport-intervention.html">📝 Rapport</a>
+  <a href="rapport-pdf.html">🖨️ Export PDF</a>
+  <a href="notifications.html">🔔 Notifications</a>
+  <a href="login.html">🔐 Connexion</a>
 </div>
+<div class="main-content">
+  <!-- CONTENU ICI -->
 
+
+<h1>Ajouter un Client / Projet</h1>
+<form id="clientForm">
+<label>Type de client :</label>
+<select id="clientType" onchange="toggleFields()">
+<option value="Particulier">Particulier</option>
+<option value="Professionnel">Professionnel</option>
+</select>
+<div id="fieldsParticulier">
+<label>Nom complet :</label>
+<input id="nomClient" placeholder="Nom et prénom" type="text"/>
+</div>
+<div class="hidden" id="fieldsPro">
+<label>Raison sociale :</label>
+<input id="raisonSociale" placeholder="Nom de l'entreprise" type="text"/>
+<label>N° TVA :</label>
+<input id="tva" type="text"/>
+<label>SIRET :</label>
+<input id="siret" type="text"/>
+</div>
+<label>Nom du projet / bateau :</label>
+<input id="projet" type="text"/>
+<label>Activité :</label>
+<select id="activite">
+<option>Yachting</option>
+<option>Painting</option>
+<option>Cover</option>
+<option>Cleaning</option>
+</select>
+<label>Adresse :</label>
+<input id="adresse" type="text"/>
+<label>Téléphone :</label>
+<input id="telephone" type="tel"/>
+<label>Commentaires / notes :</label>
+<textarea id="notes" rows="3"></textarea>
+<button onclick="ajouterClient()" type="button">Ajouter</button>
+<button onclick="exporterExcel()" type="button">Exporter en Excel</button>
+<button onclick="envoyerEmail()" type="button">📧 Envoyer à LNB</button>
+<button onclick="envoyerEmail()" type="button">Envoyer à LNB</button>
+</form>
+<div style="max-width: 1000px; margin: auto;">
+<table id="clientTable">
+<thead>
+<tr>
+<th>Type</th>
+<th>Client</th>
+<th>Projet</th>
+<th>Activité</th>
+<th>Téléphone</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+</div>
 <script>
 let clients = [];
 
@@ -190,5 +174,6 @@ function envoyerEmail() {
 }
 </script>
 
+</div>
 </body>
 </html>

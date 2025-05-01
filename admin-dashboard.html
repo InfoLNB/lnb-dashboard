@@ -1,152 +1,116 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <title>Dashboard Admin - LNB</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      color: #001f3f;
-      background-color: #f8f9fa;
-    }
-    .sidebar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 220px;
-      height: 100vh;
-      background-color: #001f3f;
-      color: white;
-      padding: 20px;
-      box-sizing: border-box;
-    }
-    .sidebar h2 {
-      font-size: 1.4em;
-      margin-bottom: 20px;
-    }
-    .sidebar a {
-      color: white;
-      display: block;
-      margin: 12px 0;
-      text-decoration: none;
-    }
-    .header {
-      background-color: #001f3f;
-      color: white;
-      padding: 10px 20px;
-      margin-left: 220px;
-      display: flex;
-      align-items: center;
-    }
-    .header img {
-      height: 40px;
-      margin-right: 15px;
-    }
-    .content {
-      margin-left: 240px;
-      padding: 20px;
-    }
-    .card {
-      background-color: white;
-      border-radius: 10px;
-      padding: 20px;
-      margin-bottom: 30px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-    input, select, textarea, button {
-      width: 100%;
-      padding: 10px;
-      margin: 6px 0;
-      box-sizing: border-box;
-    }
-    table {
-      width: 100%;
-      margin-top: 20px;
-      border-collapse: collapse;
-    }
-    th, td {
-      padding: 10px;
-      border: 1px solid #ddd;
-    }
-    .hidden {
-      display: none;
-    }
-    canvas, #calendar {
-      background-color: white;
-      padding: 10px;
-      border-radius: 10px;
-    }
-  </style>
 </head>
 <body>
 
-<div class="sidebar">
-  <h2>LNB Menu</h2>
-  <a href="#stats">📊 Statistiques</a>
-  <a href="#planning">📅 Planning</a>
-  <a href="#projects">📁 Projets</a>
-  <a href="#clients">👥 Clients</a>
-</div>
+<!-- Menu Burger (commun à toutes les pages LNB) -->
+<style>
+  .sidebar {
+    height: 100vh;
+    width: 220px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #0a1a2f;
+    color: white;
+    padding: 20px;
+    font-family: sans-serif;
+  }
+  .sidebar h2 {
+    font-size: 1.4em;
+    border-bottom: 1px solid #555;
+    padding-bottom: 10px;
+  }
+  .sidebar a {
+    display: block;
+    color: white;
+    margin: 12px 0;
+    text-decoration: none;
+  }
+  .sidebar a:hover {
+    color: #00bcd4;
+  }
+  .main-content {
+    margin-left: 240px;
+    padding: 20px;
+  }
+</style>
 
+<div class="sidebar">
+  <h2>LNB Dashboard</h2>
+  <a href="dashboard.html">🏠 Accueil</a>
+  <a href="admin-dashboard.html">🧭 Admin</a>
+  <a href="employe-dashboard.html">👷 Employé</a>
+  <a href="client-form.html">📇 Client</a>
+  <a href="project-detail.html">📁 Projets</a>
+  <a href="rapport-intervention.html">📝 Rapport</a>
+  <a href="rapport-pdf.html">🖨️ Export PDF</a>
+  <a href="notifications.html">🔔 Notifications</a>
+  <a href="login.html">🔐 Connexion</a>
+</div>
+<div class="main-content">
+  <!-- CONTENU ICI -->
+
+
+<div class="sidebar">
+<h2>LNB Menu</h2>
+<a href="#stats">📊 Statistiques</a>
+<a href="#planning">📅 Planning</a>
+<a href="#projects">📁 Projets</a>
+<a href="#clients">👥 Clients</a>
+</div>
 <div class="header">
-  <img src="lnb-logo.png" alt="LNB Logo">
-  <h1 style="flex:1;">Dashboard Administrateur</h1>
-  <button onclick="openNotification()" style="background:none;border:none;cursor:pointer;">
+<img alt="LNB Logo" src="lnb-logo.png"/>
+<h1 style="flex:1;">Dashboard Administrateur</h1>
+<button onclick="openNotification()" style="background:none;border:none;cursor:pointer;">
     🔔
   </button>
-  <button onclick="openInterventionForm()" style="margin-left:10px;background:none;border:none;font-size:22px;cursor:pointer;">
+<button onclick="openInterventionForm()" style="margin-left:10px;background:none;border:none;font-size:22px;cursor:pointer;">
     ➕
   </button>
 </div>
-
 <div class="content">
-  <div class="card" id="stats">
-    <h2>📊 Statistiques</h2>
-    <canvas id="caChart"></canvas>
-  </div>
-
-  <div class="card" id="planning">
-    <h2>📅 Planning global</h2>
-    <div id="calendar"></div>
-  </div>
-
-  
-  <div class="card" id="projects">
-    <h2>📁 Projets avec photos</h2>
-    <div class="project-card">
-      <img src="AdobeStock_731368730_Preview.jpeg" alt="Projet Yachting" class="project-image" onclick="openModal('img1')">
-      <div class="project-info">
-        <h3>Lady Blue</h3>
-        <p>Client : Jean Dupont</p>
-        <p>Activité : Yachting</p>
-        <p>Statut : En cours · 3 interventions</p>
-      </div>
-    </div>
-    <div class="project-card">
-      <img src="AdobeStock_592711652_Preview.jpeg" alt="Projet Cover" class="project-image" onclick="openModal('img2')">
-      <div class="project-info">
-        <h3>Black Pearl</h3>
-        <p>Client : Sophie Martin</p>
-        <p>Activité : Cover</p>
-        <p>Statut : En attente de facture</p>
-      </div>
-    </div>
-    <div id="img1" class="modal" onclick="this.style.display='none'">
-      <span class="close">&times;</span>
-      <img class="modal-content" src="AdobeStock_731368730_Preview.jpeg">
-    </div>
-    <div id="img2" class="modal" onclick="this.style.display='none'">
-      <span class="close">&times;</span>
-      <img class="modal-content" src="AdobeStock_592711652_Preview.jpeg">
-    </div>
-  </div>
-  <style>
+<div class="card" id="stats">
+<h2>📊 Statistiques</h2>
+<canvas id="caChart"></canvas>
+</div>
+<div class="card" id="planning">
+<h2>📅 Planning global</h2>
+<div id="calendar"></div>
+</div>
+<div class="card" id="projects">
+<h2>📁 Projets avec photos</h2>
+<div class="project-card">
+<img alt="Projet Yachting" class="project-image" onclick="openModal('img1')" src="AdobeStock_731368730_Preview.jpeg"/>
+<div class="project-info">
+<h3>Lady Blue</h3>
+<p>Client : Jean Dupont</p>
+<p>Activité : Yachting</p>
+<p>Statut : En cours · 3 interventions</p>
+</div>
+</div>
+<div class="project-card">
+<img alt="Projet Cover" class="project-image" onclick="openModal('img2')" src="AdobeStock_592711652_Preview.jpeg"/>
+<div class="project-info">
+<h3>Black Pearl</h3>
+<p>Client : Sophie Martin</p>
+<p>Activité : Cover</p>
+<p>Statut : En attente de facture</p>
+</div>
+</div>
+<div class="modal" id="img1" onclick="this.style.display='none'">
+<span class="close">×</span>
+<img class="modal-content" src="AdobeStock_731368730_Preview.jpeg"/>
+</div>
+<div class="modal" id="img2" onclick="this.style.display='none'">
+<span class="close">×</span>
+<img class="modal-content" src="AdobeStock_592711652_Preview.jpeg"/>
+</div>
+</div>
+<style>
     .project-card {
       background-color: white;
       border-radius: 10px;
@@ -193,50 +157,46 @@
       cursor: pointer;
     }
   </style>
-  <script>
+<script>
     function openModal(id) {
       document.getElementById(id).style.display = "block";
     }
   </script>
-
-
-  <div class="card" id="clients">
-    <h2>👥 Fiche client</h2>
-    <select id="clientType" onchange="toggleFields()">
-      <option value="Particulier">Particulier</option>
-      <option value="Professionnel">Professionnel</option>
-    </select>
-    <div id="fieldsParticulier">
-      <input type="text" id="nomClient" placeholder="Nom et prénom">
-    </div>
-    <div id="fieldsPro" class="hidden">
-      <input type="text" id="raisonSociale" placeholder="Raison sociale">
-      <input type="text" id="tva" placeholder="N° TVA">
-      <input type="text" id="siret" placeholder="SIRET">
-    </div>
-    <input type="text" id="projet" placeholder="Nom du projet">
-    <select id="activite">
-      <option>Yachting</option>
-      <option>Painting</option>
-      <option>Cover</option>
-      <option>Cleaning</option>
-    </select>
-    <input type="text" id="adresse" placeholder="Adresse">
-    <input type="tel" id="telephone" placeholder="Téléphone">
-    <textarea id="notes" rows="2" placeholder="Notes ou remarques"></textarea>
-    <button onclick="ajouterClient()">Ajouter</button>
-    <button onclick="exporterExcel()">Exporter Excel</button>
-    <button onclick="envoyerEmail()">📧 Envoyer à LNB</button>
-
-    <table id="clientTable">
-      <thead>
-        <tr><th>Type</th><th>Client</th><th>Projet</th><th>Activité</th><th>Téléphone</th><th>Notes</th></tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </div>
+<div class="card" id="clients">
+<h2>👥 Fiche client</h2>
+<select id="clientType" onchange="toggleFields()">
+<option value="Particulier">Particulier</option>
+<option value="Professionnel">Professionnel</option>
+</select>
+<div id="fieldsParticulier">
+<input id="nomClient" placeholder="Nom et prénom" type="text"/>
 </div>
-
+<div class="hidden" id="fieldsPro">
+<input id="raisonSociale" placeholder="Raison sociale" type="text"/>
+<input id="tva" placeholder="N° TVA" type="text"/>
+<input id="siret" placeholder="SIRET" type="text"/>
+</div>
+<input id="projet" placeholder="Nom du projet" type="text"/>
+<select id="activite">
+<option>Yachting</option>
+<option>Painting</option>
+<option>Cover</option>
+<option>Cleaning</option>
+</select>
+<input id="adresse" placeholder="Adresse" type="text"/>
+<input id="telephone" placeholder="Téléphone" type="tel"/>
+<textarea id="notes" placeholder="Notes ou remarques" rows="2"></textarea>
+<button onclick="ajouterClient()">Ajouter</button>
+<button onclick="exporterExcel()">Exporter Excel</button>
+<button onclick="envoyerEmail()">📧 Envoyer à LNB</button>
+<table id="clientTable">
+<thead>
+<tr><th>Type</th><th>Client</th><th>Projet</th><th>Activité</th><th>Téléphone</th><th>Notes</th></tr>
+</thead>
+<tbody></tbody>
+</table>
+</div>
+</div>
 <script>
   const clients = [];
 
@@ -310,8 +270,6 @@
     calendar.render();
   });
 </script>
-
-
 <script>
 function openNotification() {
   alert("🔔 Notifications : à intégrer (problèmes, retards, ajouts)");
@@ -320,59 +278,54 @@ function openInterventionForm() {
   alert("➕ Formulaire intervention rapide à intégrer ici");
 }
 </script>
-
-
 <div class="card" id="visual-status">
-  <h2>📍 Avancement par projet</h2>
-  <div style="margin-bottom:20px;">
-    <h3>Lady Blue – Jean Dupont</h3>
-    <div style="display: flex; justify-content: space-between; font-size: 0.9em;">
-      <span>📝 Devis</span><span>📤 Facture</span><span>👷 Assigné</span><span>📧 Notification</span>
-    </div>
-    <div style="display: flex; gap: 10px; margin-top: 5px;">
-      <div style="flex:1; height: 10px; background: green; border-radius: 5px;"></div>
-      <div style="flex:1; height: 10px; background: red; border-radius: 5px;"></div>
-      <div style="flex:1; height: 10px; background: green; border-radius: 5px;"></div>
-      <div style="flex:1; height: 10px; background: orange; border-radius: 5px;"></div>
-    </div>
-  </div>
-  <div style="margin-bottom:20px;">
-    <h3>Black Pearl – Sophie Martin</h3>
-    <div style="display: flex; justify-content: space-between; font-size: 0.9em;">
-      <span>📝 Devis</span><span>📤 Facture</span><span>👷 Assigné</span><span>📧 Notification</span>
-    </div>
-    <div style="display: flex; gap: 10px; margin-top: 5px;">
-      <div style="flex:1; height: 10px; background: green; border-radius: 5px;"></div>
-      <div style="flex:1; height: 10px; background: green; border-radius: 5px;"></div>
-      <div style="flex:1; height: 10px; background: red; border-radius: 5px;"></div>
-      <div style="flex:1; height: 10px; background: orange; border-radius: 5px;"></div>
-    </div>
-  </div>
+<h2>📍 Avancement par projet</h2>
+<div style="margin-bottom:20px;">
+<h3>Lady Blue – Jean Dupont</h3>
+<div style="display: flex; justify-content: space-between; font-size: 0.9em;">
+<span>📝 Devis</span><span>📤 Facture</span><span>👷 Assigné</span><span>📧 Notification</span>
 </div>
-
-
+<div style="display: flex; gap: 10px; margin-top: 5px;">
+<div style="flex:1; height: 10px; background: green; border-radius: 5px;"></div>
+<div style="flex:1; height: 10px; background: red; border-radius: 5px;"></div>
+<div style="flex:1; height: 10px; background: green; border-radius: 5px;"></div>
+<div style="flex:1; height: 10px; background: orange; border-radius: 5px;"></div>
+</div>
+</div>
+<div style="margin-bottom:20px;">
+<h3>Black Pearl – Sophie Martin</h3>
+<div style="display: flex; justify-content: space-between; font-size: 0.9em;">
+<span>📝 Devis</span><span>📤 Facture</span><span>👷 Assigné</span><span>📧 Notification</span>
+</div>
+<div style="display: flex; gap: 10px; margin-top: 5px;">
+<div style="flex:1; height: 10px; background: green; border-radius: 5px;"></div>
+<div style="flex:1; height: 10px; background: green; border-radius: 5px;"></div>
+<div style="flex:1; height: 10px; background: red; border-radius: 5px;"></div>
+<div style="flex:1; height: 10px; background: orange; border-radius: 5px;"></div>
+</div>
+</div>
+</div>
 <!-- Bouton + Intervention -->
 <div style="text-align: right; margin-bottom: 10px;">
-  <button onclick="document.getElementById('formIntervention').style.display='block'" style="font-size: 20px;">➕ Nouvelle intervention</button>
+<button onclick="document.getElementById('formIntervention').style.display='block'" style="font-size: 20px;">➕ Nouvelle intervention</button>
 </div>
-
 <!-- Formulaire d'intervention caché -->
 <div id="formIntervention" style="display:none; border:1px solid #ccc; padding:15px; background:#f9f9f9; border-radius:8px;">
-  <h3>📋 Ajouter une intervention</h3>
-  <form onsubmit="handleForm(event)">
-    <label>Email employé :</label><br>
-    <input type="email" id="email" required><br>
-    <label>Nom du projet :</label><br>
-    <input type="text" id="projet" required><br>
-    <label>Date :</label><br>
-    <input type="date" id="date" required><br>
-    <label>Heure :</label><br>
-    <input type="time" id="heure" required><br>
-    <label>Tâche :</label><br>
-    <input type="text" id="tache" required><br><br>
-    <button type="submit">Envoyer</button>
-    <button type="button" onclick="document.getElementById('formIntervention').style.display='none'">Annuler</button>
-  </form>
+<h3>📋 Ajouter une intervention</h3>
+<form onsubmit="handleForm(event)">
+<label>Email employé :</label><br/>
+<input id="email" required="" type="email"/><br/>
+<label>Nom du projet :</label><br/>
+<input id="projet" required="" type="text"/><br/>
+<label>Date :</label><br/>
+<input id="date" required="" type="date"/><br/>
+<label>Heure :</label><br/>
+<input id="heure" required="" type="time"/><br/>
+<label>Tâche :</label><br/>
+<input id="tache" required="" type="text"/><br/><br/>
+<button type="submit">Envoyer</button>
+<button onclick="document.getElementById('formIntervention').style.display='none'" type="button">Annuler</button>
+</form>
 </div>
 <script>
 function handleForm(event) {
@@ -387,5 +340,6 @@ function handleForm(event) {
 }
 </script>
 
+</div>
 </body>
 </html>
