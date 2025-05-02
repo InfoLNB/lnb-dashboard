@@ -21,7 +21,7 @@
   <main>
     <header>
       <h1>LNB GROUP APP</h1>
-      <a href="rapport-intervention.html"><button id="open-form">➕</button></a>
+      <a href="nouvelle-intervention.html"><button id="open-form">➕</button></a>
     </header>
 
     <section class="stats">
@@ -38,17 +38,12 @@
         <a href="project-detail.html"><button>🔍 Voir</button></a>
         <button onclick="archiveProject(this)">🗑 Archiver</button>
       </div>
-      <div class="project">
-        <h3>Projet Peinture</h3>
-        <p>Activité: Painting</p>
-        <a href="project-detail.html"><button>🔍 Voir</button></a>
-        <button onclick="archiveProject(this)">🗑 Archiver</button>
-      </div>
     </section>
 
     <h2>📁 Archives</h2>
     <section id="archives"></section>
   </main>
+
   <script>
     function archiveProject(btn) {
       const card = btn.parentElement;
