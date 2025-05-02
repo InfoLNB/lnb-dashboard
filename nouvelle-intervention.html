@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Nouvelle Intervention</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 2rem; }
+    .form-container {
+      background: white; max-width: 700px; margin: auto;
+      padding: 2rem; border-radius: 8px; box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+    }
+    label { display: block; margin-top: 1rem; font-weight: bold; }
+    input, select, textarea {
+      width: 100%; padding: 0.5rem; margin-top: 0.5rem;
+      border: 1px solid #ccc; border-radius: 6px;
+    }
+    button {
+      margin-top: 2rem; padding: 0.75rem 1.5rem; background: #004466;
+      color: white; border: none; border-radius: 6px; cursor: pointer;
+    }
+    .confirmation {
+      background: #d4edda;
+      color: #155724;
+      padding: 1rem;
+      border-radius: 6px;
+      margin-top: 1rem;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>➕ Nouvelle Intervention</h2>
+    <form id="interventionForm">
+      <label for="employee">Affecté à</label>
+      <select id="employee" name="employee">
+        <option value="Basile">Basile</option>
+        <option value="Brian">Brian</option>
+      </select>
+
+      <label for="secteur">Secteur</label>
+      <select id="secteur" name="secteur">
+        <option value="Yachting">Yachting</option>
+        <option value="Painting">Painting</option>
+        <option value="Cover">Cover</option>
+        <option value="Cleaning">Cleaning</option>
+      </select>
+
+      <label for="client">Client / Projet</label>
+      <input type="text" id="client" name="client" />
+
+      <label for="adresse">Adresse</label>
+      <input type="text" id="adresse" name="adresse" />
+
+      <label for="date">Date & Heure</label>
+      <input type="datetime-local" id="date" name="date" />
+
+      <label for="note">Détails / Demande</label>
+      <textarea id="note" rows="3"></textarea>
+
+      <button type="submit">Planifier</button>
+    </form>
+    <div class="confirmation" id="confirmationMessage">
+      ✔ Mission ajoutée avec succès !
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("interventionForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      document.getElementById("confirmationMessage").style.display = "block";
+    });
+  </script>
+</body>
+</html>
