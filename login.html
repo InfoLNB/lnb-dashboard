@@ -1,1 +1,37 @@
-// Placeholder for login.html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Connexion – LNB</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="login-container">
+    <h2>Connexion à LNB GROUP APP</h2>
+    <form id="loginForm">
+      <input type="text" id="username" placeholder="Nom d'utilisateur" required />
+      <input type="password" id="password" placeholder="Mot de passe" required />
+      <button type="submit">Connexion</button>
+    </form>
+    <p id="loginError" style="color:red; display:none;">Identifiants incorrects</p>
+  </div>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const user = document.getElementById("username").value.toLowerCase();
+      const pass = document.getElementById("password").value;
+
+      // Simuler une authentification locale simple
+      if (user === "admin" && pass === "admin") {
+        window.location.href = "admin-dashboard.html";
+      } else if (user === "employe" && pass === "employe") {
+        window.location.href = "employee-dashboard.html";
+      } else {
+        document.getElementById("loginError").style.display = "block";
+      }
+    });
+  </script>
+</body>
+</html>
