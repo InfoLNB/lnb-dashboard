@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LNB GROUP APP — Admin</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="logo">
+      <img src="assets/images/lnb-logo.png" alt="Logo LNB" />
+    </div>
+    <nav>
+      <ul>
+        <li><img src="assets/icons/icon-dashboard.svg" alt="" /> Dashboard</li>
+        <li><img src="assets/icons/icon-planning.svg" alt="" /> Planning</li>
+        <li><img src="assets/icons/icon-projects.svg" alt="" /> Projets</li>
+        <li><img src="assets/icons/icon-clients.svg" alt="" /> Clients</li>
+      </ul>
+    </nav>
+  </aside>
+
+  <header class="topbar">
+    <h1>LNB GROUP APP</h1>
+    <button class="btn-new" onclick="location.href='login.html'">
+      ➕ Nouvelle mission
+    </button>
+  </header>
+
+  <main class="content">
+    <section class="stats">
+      <div class="card">
+        <h3>CA Mensuel</h3><p>0 €</p>
+      </div>
+      <div class="card">
+        <h3>Heures trav.</h3><p>0 h</p>
+      </div>
+      <div class="card">
+        <h3>Devis</h3><p>0 créés</p>
+      </div>
+      <div class="card">
+        <h3>Factures</h3><p>0 envoyées</p>
+      </div>
+    </section>
+
+    <section class="projects">
+      <h2>📁 Projets en cours</h2>
+      <ul id="projectList"></ul>
+    </section>
+  </main>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>
