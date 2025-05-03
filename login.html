@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Connexion LNB</title>
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
   <div class="login-container">
-    <img src="assets/images/lnb-logo.png" alt="Logo LNB" />
+    <img src="assets/images/lnb-logo.png" alt="Logo LNB">
     <h2>Connexion LNB</h2>
     <form onsubmit="handleLogin(event)">
       <input type="text" id="username" placeholder="Nom d'utilisateur" required>
@@ -16,14 +16,7 @@
       <button type="submit">Se connecter</button>
     </form>
   </div>
-  <script>
-    function handleLogin(e) {
-      e.preventDefault();
-      const u = document.getElementById('username').value;
-      const p = document.getElementById('password').value;
-      if (u==='AdminBB'&&p==='BrianBasile83!') location.href='admin-dashboard.html';
-      else alert('Identifiants incorrects.');
-    }
-  </script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/login.js"></script>
 </body>
 </html>
