@@ -1,45 +1,41 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Admin Dashboard - LNB</title>
-  <link rel="stylesheet" href="assets/css/style.css">
-  <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css' rel='stylesheet' />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Admin - LNB Group App</title>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css" rel="stylesheet"/>
 </head>
 <body>
   <aside class="sidebar">
-    <img src="assets/images/lnb-logo.png" alt="LNB Logo" class="logo">
+    <div class="logo"><img src="assets/images/lnb-logo.png" alt="LNB Logo" style="width:80px;"/></div>
     <nav>
-      <ul>
-        <li><a href="#">Dashboard</a></li>
-        <li><a href="#">Planning</a></li>
-        <li><a href="#">Projets</a></li>
-        <li><a href="#">Clients</a></li>
-      </ul>
+      <a href="admin-dashboard.html">Dashboard</a>
+      <a href="#">Planning</a>
+      <a href="#">Projets</a>
+      <a href="#">Clients</a>
+      <a href="#">Employés</a>
+      <a href="#">Qonto</a>
+      <a href="#">Rapports</a>
+      <a href="#">Paramètres</a>
     </nav>
   </aside>
-  <main class="main-content">
-    <header>
-      <h1>LNB GROUP APP</h1>
-      <button id="newMissionBtn">+ Nouvelle mission</button>
-    </header>
-    <section class="stats">
-      <canvas id="caChart"></canvas>
-      <canvas id="hoursChart"></canvas>
-    </section>
-    <section class="projects">
-      <h2>Projets en cours</h2>
-      <div id="projectList"></div>
-    </section>
-    <section class="calendar-section">
-      <h2>Planning global</h2>
-      <div id="calendar"></div>
-    </section>
+  <main class="main">
+    <h1>LNB GROUP APP</h1>
+    <button onclick="alert('Formulaire à venir')" style="padding:10px 15px;background:#001f3f;color:#fff;border:none;border-radius:4px;cursor:pointer;margin-bottom:20px;">+ Nouvelle mission</button>
+    <div class="kpi-cards">
+      <div class="kpi-card"><h3>CA Mensuel</h3><p>0 €</p></div>
+      <div class="kpi-card"><h3>Heures trav.</h3><p>0 h</p></div>
+      <div class="kpi-card"><h3>Devis</h3><p>0 créés</p></div>
+      <div class="kpi-card"><h3>Factures</h3><p>0 envoyées</p></div>
+    </div>
+    <div id="chart"><canvas id="revenueChart"></canvas></div>
+    <div id="calendar"></div>
   </main>
-  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
   <script src="assets/js/charts.js"></script>
   <script src="assets/js/calendar.js"></script>
-  <script src="assets/js/api.js"></script>
 </body>
 </html>
