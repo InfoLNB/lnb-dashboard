@@ -1,79 +1,33 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Connexion LNB</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f8f9fa;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-    .login-container {
-      background-color: white;
-      padding: 40px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      width: 350px;
-      text-align: center;
-    }
-    img {
-      width: 100px;
-      margin-bottom: 20px;
-    }
-    h2 {
-      color: #001f3f;
-      margin-bottom: 20px;
-    }
-    input[type="text"], input[type="password"] {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-    button {
-      width: 100%;
-      padding: 10px;
-      background-color: #001f3f;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #003366;
-    }
-  </style>
+  <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
   <div class="login-container">
-    <img src="assets/images/lnb-logo.png" alt="Logo LNB">
+    <img src="assets/images/lnb-logo.png" alt="Logo LNB" />
     <h2>Connexion LNB</h2>
-    <form onsubmit="handleLogin(event)">
-      <input type="text" id="username" placeholder="Nom d'utilisateur" required>
-      <input type="password" id="password" placeholder="Mot de passe" required>
+    <form id="loginForm">
+      <input type="text" id="username" placeholder="Nom d'utilisateur" required />
+      <input type="password" id="password" placeholder="Mot de passe" required />
       <button type="submit">Se connecter</button>
     </form>
+    <p id="loginError" class="error" style="display:none">Identifiants incorrects</p>
   </div>
-
   <script>
-    function handleLogin(event) {
-      event.preventDefault();
-      const user = document.getElementById('username').value;
-      const pass = document.getElementById('password').value;
-
-      if (user === 'AdminBB' && pass === 'BrianBasile83!') {
-        window.location.href = 'admin-dashboard.html';
-      } else {
-        alert('Identifiants incorrects.');
+    document.getElementById('loginForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const u = document.getElementById('username').value;
+      const p = document.getElementById('password').value;
+      if (u==='AdminBB' && p==='BrianBasile83!') { location.href='admin-dashboard.html'; return; }
+      if (/^(YACHTING|PAINTING|COVER)\d+$/.test(u) && p.startsWith('employepass')) {
+        location.href='employee-dashboard.html'; return;
       }
-    }
+      document.getElementById('loginError').style.display='block';
+    });
   </script>
 </body>
 </html>
